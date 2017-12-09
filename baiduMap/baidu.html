@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 500px;margin:0;font-family:"微软雅黑";font-size:14px;}
+		#l-map{height:550px;width:100%;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=luwjvTADl3vSbqWOaP8PZLeK8h5pIBdE"></script>
+	<title>获取信息窗口的信息</title>
+</head>
+<body>
+	<div id="l-map"></div>
+	<div id="r-result"></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var sContent ="<h4>福建迈顶信息科技有限公司</h4>";
+	var map = new BMap.Map("l-map");
+	var point = new BMap.Point(119.25148,26.105485);
+	map.centerAndZoom(point, 18);
+    var marker = new BMap.Marker(point);  // 创建标注
+	map.addOverlay(marker);
+	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+	map.openInfoWindow(infoWindow,point); //开启信息窗口
+	map.enableScrollWheelZoom(true)
+    // map.enablePinchToZoom(true)
+    var opts = {
+	  width : 200,     // 信息窗口宽度
+	  height: 80,     // 信息窗口高度
+	  //title : "迈顶信息科技有限公司" , // 信息窗口标题
+	  enableMessage:true,//设置允许信息窗发送短息
+	  message:""
+	}
+	var infoWindow = new BMap.InfoWindow("<h4 style='margin:0 0 5px 0;padding:0.2em 0'>福建迈顶信息科技有限公司</h4>"+"地址：福建省福州市闽侯县软件园F区A楼24层 ", opts);  // 创建信息窗口对象 
+	marker.addEventListener("click", function(){          
+		map.openInfoWindow(infoWindow,point); //开启信息窗口
+	});
+</script>

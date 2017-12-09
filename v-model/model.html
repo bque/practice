@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定原理</title>
+    <script>
+        function getListText() {
+            var listVuale = document.getElementById("list-text").value;
+            var getListId = document.getElementById("list");
+            var listAdd = getListId.innerHTML += "<li>" + listVuale + "</li>";
+            localStorage.setItem("storageContent", listAdd);
+        }
+        window.onload = function () {
+            for (var i = 0; i < localStorage.length; i++) {
+                localStorage.getItem("storageContent");
+                document.getElementById("list").innerHTML = localStorage.getItem("storageContent");
+                console.log('localStorage里存储的第' + i + '条数据的名字为：' + localStorage.key(i) + ',值为：' + localStorage.getItem(localStorage.key(i)));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+    </ul>
+    <input type="text" id="list-text">
+    <button onclick="getListText()">添加</button>
+</body>
+
+</html>
