@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定原理</title>
+    <script>
+        //数据层 module
+        function dataModule(val) {
+            var storageContentArr = localStorage.storageContent.split(",");
+            storageContentArr.push(val);
+            localStorage.storageContent = storageContentArr;
+        }
+        //视图层 view a
+        function caseView(value) {
+            for(var i=0;listText.length;i++){
+                
+            }
+            var listText = document.getElementsByClassName("list")[0];
+            listText.innerHTML += value + "</br>";
+
+        }
+
+        //点击添加事件
+        function addOnelist() {
+            var listVuale = document.getElementById("list-text").value;
+            caseView(listVuale);
+            dataModule(listVuale);
+        }
+
+        //页面加载将数据添加到页面上去
+        window.onload = function () {
+            //将本地数据添加到ul里去
+            document.getElementsByClassName("list")[0].innerHTML = localStorage.storageContent;
+        }
+
+        //清除本地缓存数据
+        function clearContent() {
+            document.getElementsByClassName("list")[0].innerHTML = "";
+            localStorage.storageContent = "";
+        }
+    </script>
+</head>
+
+<body>
+    <ul class="list">
+    </ul>
+    <input type="text" id="list-text">
+    <button onclick="addOnelist()">添加</button>
+    <button onclick="clearContent()">删除</button>
+
+</body>
+
+</html>
